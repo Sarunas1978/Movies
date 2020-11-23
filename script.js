@@ -65,6 +65,7 @@ let films =[
 ]
 let mainDiv=document.getElementById("mainDiv")
 let i=0;
+let checkedComments=false
 
 for (const film of films) {
     let card=document.createElement("div")
@@ -75,7 +76,7 @@ for (const film of films) {
 
     let img=document.createElement("img")
     img.src=film.image
-    img.classList.add("floatLeft")
+    img.classList.add("floatLeft", "img1")
     card.appendChild(img)
 
     let title=document.createElement("div")
@@ -98,9 +99,30 @@ for (const film of films) {
     description.innerHTML="<b>Description: </b>"+ film.description
     card.appendChild(description)
 
+    // let stars=document.createElement("img")
+    // stars.classList.add("img2")
+    // stars.src="https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
+    // card.appendChild(stars)
+    // addStars(film.rating)
+
     i++;
 }
 
-function showComments(){
+function showComments(event){
+    //event.path[1].backgroundColor="red"
+    if(!checkedComments){
+        mainDiv.style.width="50%"
+        let commentDiv=document.createElement("div")
+        commentDiv.style.width="50%"
+        document.body.appendChild(commentDiv)
+        document.body.classList.add("displayFlex")
+        checkedComments=true;
+        console.log(films[+(event.path[1].id)].comments)
+    } else {
+        console.log(films[+(event.path[1].id)].comments)
+    }
+
+}
+function addStars(rating){
 
 }

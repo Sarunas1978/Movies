@@ -52,11 +52,16 @@
     overflow-y: auto;
     text-justify: newspaper;
 }
-img {
+.img1 {
     height: 200px;
     width: 150px;
     margin: 5px;
 }
+.img2{
+    width: 150px;
+    height: 50px;
+
+    }
 .m-5{
     margin: 5px;
 }
