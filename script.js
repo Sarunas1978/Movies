@@ -110,6 +110,12 @@ for (const film of films) {
 }
 
 function showComments(event){
+    // let cardPrevious=event.path[1].id
+    //
+    // let card=document.getElementById(`${cardPrevious}`)
+    // card.style.background="white"
+    // console.log(cardPrevious, card)
+    // this.style.background="magenta"
 
 
 
@@ -118,7 +124,7 @@ function showComments(event){
         mainDiv.style.width="50%"
         let commentDiv=document.createElement("div")
         commentDiv.style.width="50%"
-        commentDiv.classList.add("mainDivBrother")
+        commentDiv.classList.add("mainDivBrother", "m-5")
         document.body.appendChild(commentDiv)
         document.body.classList.add("displayFlex")
         checkedComments=true;
@@ -130,7 +136,8 @@ function showComments(event){
             let div;
             for (let j = 0; j < commentsNumber; j++) {
                div=document.createElement("div")
-               div.innerHTML=films[+(event.path[1].id)].comments[j].comment;
+               div.innerHTML=`<b>${films[+(event.path[1].id)].comments[j].name} wrote:</b><br>
+                ${films[+(event.path[1].id)].comments[j].comment}`
                commentDiv.appendChild(div)
             }
         }
@@ -146,7 +153,8 @@ function showComments(event){
             let div;
             for (let j = 0; j < commentsNumber; j++) {
                 div=document.createElement("div")
-                div.innerHTML=films[+(event.path[1].id)].comments[j].comment;
+                div.innerHTML=`<b>${films[+(event.path[1].id)].comments[j].name} wrote:</b><br>
+                ${films[+(event.path[1].id)].comments[j].comment}`
                 commentDiv[0].appendChild(div)
             }
         }
