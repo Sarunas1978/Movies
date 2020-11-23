@@ -1,0 +1,62 @@
+.displayFlex{
+    display: flex;
+}
+.flexDirectionC{
+    flex-direction: column;
+}
+.displayJustifyContentC
+{
+    justify-content: center;
+}
+.displayJustifyContentSpaceB
+{
+    justify-content: space-between;
+}
+.alignContent{
+    align-content: center;
+}
+.alignItemsE{
+    align-items: flex-end;
+}
+.justifyItems{
+    justify-items: center;
+}
+.alignSelfE{
+    align-self: end;
+}
+.alignSelfC{
+    align-self: center;
+}
+.flexWrap{
+    flex-wrap: wrap;
+}
+
+.floatRight{
+    float: right;
+}
+
+.floatLeft{
+    float: left;
+}
+.divMain{
+    background-color: #bab8b8;
+    height: 100% ;
+    width: 100%;
+}
+.divCard{
+    background-color: white;
+    height: auto;
+    width: 300px;
+    margin: 10px;
+    overflow-wrap: break-word;
+    overflow-y: auto;
+    text-justify: newspaper;
+}
+img {
+    height: 200px;
+    width: 150px;
+    margin: 5px;
+}
+.m-5{
+    margin: 5px;
+}
