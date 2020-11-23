@@ -66,6 +66,7 @@ let films =[
 let mainDiv=document.getElementById("mainDiv")
 let i=0;
 let checkedComments=false
+let commentsNumber;
 
 for (const film of films) {
     let card=document.createElement("div")
@@ -109,20 +110,54 @@ for (const film of films) {
 }
 
 function showComments(event){
-    //event.path[1].backgroundColor="red"
+
+
+
+
     if(!checkedComments){
         mainDiv.style.width="50%"
         let commentDiv=document.createElement("div")
         commentDiv.style.width="50%"
+        commentDiv.classList.add("mainDivBrother")
         document.body.appendChild(commentDiv)
         document.body.classList.add("displayFlex")
         checkedComments=true;
+
+        commentsNumber=films[+(event.path[1].id)].comments.length
+        if(commentsNumber == 0){
+            commentDiv.innerHTML="No comments available"
+        } else {
+            let div;
+            for (let j = 0; j < commentsNumber; j++) {
+               div=document.createElement("div")
+               div.innerHTML=films[+(event.path[1].id)].comments[j].comment;
+               commentDiv.appendChild(div)
+            }
+        }
         console.log(films[+(event.path[1].id)].comments)
     } else {
+        let commentDiv=document.getElementsByClassName("mainDivBrother")
+        commentDiv[0].innerHTML=""
+        commentsNumber=films[+(event.path[1].id)].comments.length
+
+        if(commentsNumber == 0){
+            commentDiv[0].innerHTML="No comments available"
+        } else {
+            let div;
+            for (let j = 0; j < commentsNumber; j++) {
+                div=document.createElement("div")
+                div.innerHTML=films[+(event.path[1].id)].comments[j].comment;
+                commentDiv[0].appendChild(div)
+            }
+        }
         console.log(films[+(event.path[1].id)].comments)
     }
 
-}
-function addStars(rating){
 
+
+}
+function writeDownComments(array){
+    for (let j = 0; j < array.length; j++) {
+
+    }
 }
