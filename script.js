@@ -139,6 +139,7 @@ function showComments(event){
 
             for (let j = 0; j < commentsNumber; j++) {
                 div=document.createElement("div")
+                div.classList.add("topPadding")
                 div.innerHTML=`<b>${films[cardId].comments[j].name} wrote:</b><br>
                 ${films[cardId].comments[j].comment}`
                 commentDiv.appendChild(div)
@@ -161,6 +162,7 @@ function showComments(event){
             let div;
             for (let j = 0; j < commentsNumber; j++) {
                 div=document.createElement("div")
+                div.classList.add("topPadding")
                 div.innerHTML=`<b>${films[cardId].comments[j].name} wrote:</b><br>
                 ${films[cardId].comments[j].comment}`
                 commentDiv[0].appendChild(div)
