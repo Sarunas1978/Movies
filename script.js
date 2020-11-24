@@ -103,11 +103,11 @@ for (const film of films) {
     description.innerHTML="<b>Description: </b>"+ film.description
     card.appendChild(description)
 
-    // let stars=document.createElement("img")
-    // stars.classList.add("img2")
-    // stars.src="https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
-    // card.appendChild(stars)
-    // addStars(film.rating)
+    let stars=document.createElement("img")
+    stars.classList.add("img2")
+    stars.src="https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
+    card.appendChild(stars)
+    //addStars(film.rating)
     i++;
 }
 
@@ -119,7 +119,7 @@ function showComments(event){
         mainDiv.style.width="50%"
         let commentDiv=document.createElement("div")
         commentDiv.style.width="50%"
-        commentDiv.classList.add("mainDivBrother", "m-5")
+        commentDiv.classList.add("mainDivBrother", "m-5", "b-10", "p-10")
         commentDiv.classList.add("displayFlex", "flexDirectionC")
         document.body.appendChild(commentDiv)
         document.body.classList.add("displayFlex")
@@ -139,16 +139,16 @@ function showComments(event){
 
             for (let j = 0; j < commentsNumber; j++) {
                 div=document.createElement("div")
-                div.innerHTML=`<b>${films[+event.path[1].id].comments[j].name} wrote:</b><br>
-                ${films[+(event.path[1].id)].comments[j].comment}`
+                div.innerHTML=`<b>${films[cardId].comments[j].name} wrote:</b><br>
+                ${films[cardId].comments[j].comment}`
                 commentDiv.appendChild(div)
             }
         }
-        console.log(films[+(event.path[1].id)].comments)
+        console.log(films[cardId].comments)
     } else {
         let commentDiv=document.getElementsByClassName("mainDivBrother")
         commentDiv[0].innerHTML=""
-        commentsNumber=films[+event.path[1].id].comments.length
+        commentsNumber=films[cardId].comments.length
 
         let filmTitle=document.createElement("div")
         filmTitle.innerHTML=`<b>Comments for a film with title: ${films[cardId].title}</b>`
@@ -161,12 +161,12 @@ function showComments(event){
             let div;
             for (let j = 0; j < commentsNumber; j++) {
                 div=document.createElement("div")
-                div.innerHTML=`<b>${films[+(event.path[1].id)].comments[j].name} wrote:</b><br>
-                ${films[+(event.path[1].id)].comments[j].comment}`
+                div.innerHTML=`<b>${films[cardId].comments[j].name} wrote:</b><br>
+                ${films[cardId].comments[j].comment}`
                 commentDiv[0].appendChild(div)
             }
         }
-        console.log(films[+(event.path[1].id)].comments)
+        console.log(films[cardId].comments)
     }
     addInput()
 
