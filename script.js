@@ -66,55 +66,65 @@ let films =[
 let mainDiv=document.getElementById("mainDiv")
 let i=0;
 let checkedComments=false
+let loopFor=true
 let commentsNumber;
 let cardId;
 let nameComMentor= "";
 let comMentorComment = "";
 
-for (const film of films) {
-    let card=document.createElement("div")
-    card.classList.add("divCard")
-    card.setAttribute("id",`${i}`)
-    card.addEventListener("click", showComments)
-    mainDiv.appendChild(card)
+init()
 
-    let img=document.createElement("img")
-    img.src=film.image
-    img.classList.add("floatLeft", "img1")
-    card.appendChild(img)
+function init(){
+    mainDiv = document.getElementById("mainDiv")
+    mainDiv.innerHtml=""
+    if(loopFor) {
+        for (const film of films) {
+            let card = document.createElement("div")
+            card.classList.add("divCard")
+            card.setAttribute("id", `${i}`)
+            card.addEventListener("click", showComments)
+            mainDiv.appendChild(card)
 
-    let title=document.createElement("div")
-    title.classList.add("m-5")
-    title.innerHTML="<b>Title:</b> "+ film.title
-    card.appendChild(title)
+            let img = document.createElement("img")
+            img.src = film.image
+            img.classList.add("floatLeft", "img1")
+            card.appendChild(img)
 
-    let year=document.createElement("div")
-    year.classList.add("m-5")
-    year.innerHTML="<b>Year: </b> "+ film.year
-    card.appendChild(year)
+            let title = document.createElement("div")
+            title.classList.add("m-5")
+            title.innerHTML = "<b>Title:</b> " + film.title
+            card.appendChild(title)
 
-    let rating=document.createElement("div")
-    rating.classList.add("m-5")
-    rating.innerHTML="<b>Rating: </b>"+ film.rating
-    card.appendChild(rating)
+            let year = document.createElement("div")
+            year.classList.add("m-5")
+            year.innerHTML = "<b>Year: </b> " + film.year
+            card.appendChild(year)
 
-    let description=document.createElement("div")
-    description.classList.add("m-5")
-    description.innerHTML="<b>Description: </b>"+ film.description
-    card.appendChild(description)
+            let rating = document.createElement("div")
+            rating.classList.add("m-5")
+            rating.innerHTML = "<b>Rating: </b>" + film.rating
+            card.appendChild(rating)
 
-    let stars=document.createElement("img")
-    stars.classList.add("img2")
-    stars.src="https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
-    card.appendChild(stars)
-    //addStars(film.rating)
-    i++;
+            let description = document.createElement("div")
+            description.classList.add("m-5")
+            description.innerHTML = "<b>Description: </b>" + film.description
+            card.appendChild(description)
+
+            let stars = document.createElement("img")
+            stars.classList.add("img2")
+            stars.src = "https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
+            card.appendChild(stars)
+            //addStars(film.rating)
+            i++;
+        }
+        loopFor=false;
+    }
 }
 
 function showComments(event){
 
     cardId=+event.path[1].id
-
+    console.log(cardId)
     if(!checkedComments){
         mainDiv.style.width="50%"
         let commentDiv=document.createElement("div")
@@ -190,6 +200,11 @@ function addInput(){
     button.innerText="Add Comment"
     button.addEventListener("click", addComment)
     commentDiv[0].appendChild(button)
+
+    let button1=document.createElement("button")
+    button1.innerText="Close comments"
+    button1.addEventListener("click", closeWindow)
+    commentDiv[0].appendChild(button1)
 }
 
 function takeInput(event){
@@ -217,8 +232,21 @@ function addComment() {
             document.getElementsByTagName("button")[0].remove()
             alert(`If you want to see added comment you should click 
             on ${films[cardId].title} card once again!`)
+            document.getElementsByTagName("button")[0].remove()
             addInput()
      }
         console.log(films[cardId].comments)
     }
 }
+
+ function closeWindow(event){
+
+     let a=document.getElementsByClassName("mainDivBrother")
+     a[0].innerHTML=""
+     a[0].remove()
+     mainDiv.style.width="100%"
+     mainDiv.innerHtml=""
+     i=0;
+     checkedComments=false;
+     console.log(b)
+ }
