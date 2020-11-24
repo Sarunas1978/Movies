@@ -67,6 +67,9 @@ let mainDiv=document.getElementById("mainDiv")
 let i=0;
 let checkedComments=false
 let commentsNumber;
+let cardId;
+let nameComMentor= "";
+let comMentorComment = "";
 
 for (const film of films) {
     let card=document.createElement("div")
@@ -105,50 +108,55 @@ for (const film of films) {
     // stars.src="https://www.starpng.com/public/uploads/preview/5-star-rating-png-21573998074syeo5vib9a.png"
     // card.appendChild(stars)
     // addStars(film.rating)
-
     i++;
 }
 
 function showComments(event){
-    // let cardPrevious=event.path[1].id
-    //
-    // let card=document.getElementById(`${cardPrevious}`)
-    // card.style.background="white"
-    // console.log(cardPrevious, card)
-    // this.style.background="magenta"
 
-
-
+    cardId=+event.path[1].id
 
     if(!checkedComments){
         mainDiv.style.width="50%"
         let commentDiv=document.createElement("div")
         commentDiv.style.width="50%"
         commentDiv.classList.add("mainDivBrother", "m-5")
+        commentDiv.classList.add("displayFlex", "flexDirectionC")
         document.body.appendChild(commentDiv)
         document.body.classList.add("displayFlex")
         checkedComments=true;
 
+        let filmTitle=document.createElement("div")
+        filmTitle.innerHTML=`<b>Comments for a film with title: ${films[cardId].title}</b>`
+        commentDiv.appendChild(filmTitle)
+
+
         commentsNumber=films[+(event.path[1].id)].comments.length
         if(commentsNumber == 0){
-            commentDiv.innerHTML="No comments available"
+            commentDiv.innerHTML=`<b>Comments for a film with title:  
+                ${films[cardId].title}</b><br> No comments available<br>`
         } else {
             let div;
+
             for (let j = 0; j < commentsNumber; j++) {
-               div=document.createElement("div")
-               div.innerHTML=`<b>${films[+(event.path[1].id)].comments[j].name} wrote:</b><br>
+                div=document.createElement("div")
+                div.innerHTML=`<b>${films[+event.path[1].id].comments[j].name} wrote:</b><br>
                 ${films[+(event.path[1].id)].comments[j].comment}`
-               commentDiv.appendChild(div)
+                commentDiv.appendChild(div)
             }
         }
         console.log(films[+(event.path[1].id)].comments)
     } else {
         let commentDiv=document.getElementsByClassName("mainDivBrother")
         commentDiv[0].innerHTML=""
-        commentsNumber=films[+(event.path[1].id)].comments.length
+        commentsNumber=films[+event.path[1].id].comments.length
+
+        let filmTitle=document.createElement("div")
+        filmTitle.innerHTML=`<b>Comments for a film with title: ${films[cardId].title}</b>`
+        commentDiv[0].appendChild(filmTitle)
 
         if(commentsNumber == 0){
-            commentDiv[0].innerHTML="No comments available"
+            commentDiv[0].innerHTML=`<b>Comments for a film with title:  
+                ${films[cardId].title}</b><br> No comments available<br>`
         } else {
             let div;
             for (let j = 0; j < commentsNumber; j++) {
@@ -160,12 +168,51 @@ function showComments(event){
         }
         console.log(films[+(event.path[1].id)].comments)
     }
-
-
+    addInput()
 
 }
-function writeDownComments(array){
-    for (let j = 0; j < array.length; j++) {
 
+function addInput(){
+    let commentDiv=document.getElementsByClassName("mainDivBrother")
+    let name=document.createElement("input")
+    name.placeholder=`enter your name`
+    name.addEventListener("input", takeInput)
+    commentDiv[0].appendChild(name)
+
+    let comment=document.createElement("textarea")
+    comment.placeholder=`enter your comment`
+    comment.addEventListener("input", takeComment)
+    commentDiv[0].appendChild(comment)
+
+    let button=document.createElement("button")
+    button.innerText="Add Comment"
+    button.addEventListener("click", addComment)
+    commentDiv[0].appendChild(button)
+}
+
+function takeInput(event){
+    nameComMentor=event.target.value
+    //console.log(nameComMentor)
+}
+function takeComment(event){
+    comMentorComment=event.target.value
+    //console.log(comMentorComment)
+}
+
+function addComment() {
+    if (nameComMentor === "") {
+        alert("Name is not entered. Please enter your name!")
+    } else {
+        if (comMentorComment === ""){
+            alert("Comment is not entered. Please enter the comment!")
+        } else {
+            films[cardId].comments.push({name: `${nameComMentor}`,
+                comment: `${comMentorComment}`})
+            comMentorComment = ""
+            nameComMentor = ""
+            alert(`If you want to see added comment you should click 
+            on ${films[cardId].title} card once again!`)
+     }
+        console.log(films[cardId].comments)
     }
 }
