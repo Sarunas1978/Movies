@@ -210,8 +210,12 @@ function addComment() {
                 comment: `${comMentorComment}`})
             comMentorComment = ""
             nameComMentor = ""
+            document.getElementsByTagName("input")[0].remove()
+            document.getElementsByTagName("textarea")[0].remove()
+            document.getElementsByTagName("button")[0].remove()
             alert(`If you want to see added comment you should click 
             on ${films[cardId].title} card once again!`)
+            addInput()
      }
         console.log(films[cardId].comments)
     }
